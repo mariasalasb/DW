@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DATA WAREHOUSE</title>
+    <link rel="stylesheet" href="./styles/global.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.css" 
+    rel="stylesheet"  type='text/css'>
+    <script src="https://kit.fontawesome.com/0d0f429594.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="container-fluid header">
+                <div class="row">
+                    <div class="col-12 colu-69 ">
+                        <h1>LOGO</h1>
+                    </div>
+                    <div class="col-12 colu-1 links-header">
+                        <button id="mostrarusuarios">Usuarios</button>
+                    </div>
+                    <div class="col-12 colu-1 links-header">
+                        <button id="mostrarcontactos">Contactos</button>
+                    </div>
+                    <div class="col-12 colu-1 links-header">
+                        <button id="mostrarcompanias">Compañías</button>
+                    </div>
+                    <div class="col-12 colu-1 links-header ">
+                        <button id="mostrarregiones">Región/Ciudad</button>
+                    </div>
+                </div>
+            </div>
+        </nav>  
+    </header>
+    <section id="buscar">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 colu-6">
+                    <h1>Contactos</h1>
+                    <div>
+                        <input type="text" id="buscador"> 
+                        <button class="boton-peq" onclick="">
+                            <i class="fa fa-search" id="lupa"></i>
+                        </button>    
+                    </div>
+                </div>
+                <div class="col-12 colu-6">
+                    <button class="boton-grande" onclick="crearnuevocontacto()">Agregar contacto</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="acciones" class="acciones">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 colu-6">
+                    <button id="cantidadseleccionados" disabled></button>
+                </div>
+                <div class="col-12 colu-6">
+                    <p><button onclick="borrarcontacto2()"><i class='fas fa-trash' id="eliminarcontactos" ></i>Eliminar contactos</button></p>    
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="grilla">
+        <div class="container-fluid grilla">
+            <div class="row filagrilla1">
+                <div class="colu-1 ">
+                    <input type="checkbox" onclick="checkAll(this)">
+                </div>
+                <div class="col-12 colu-2 ">
+                    <p>Contacto <button id="filtrocontacto"><i class="fas fa-exchange-alt fa-rotate-90"></i></button></p>
+                    
+                </div>
+                <div class=" colu-2 ">
+                    <p>Pais/Región<button id="filtropais"><i class="fas fa-exchange-alt fa-rotate-90"></i></button></p>
+                </div>
+                <div class="colu-2 ">
+                    <p>Compañía<button id="filtrocompany"><i class="fas fa-exchange-alt fa-rotate-90"></i></button></p>
+                </div>
+                <div class="colu-2 ">
+                    <p>Cargo<button id="filtrocargo"><i class="fas fa-exchange-alt fa-rotate-90"></i></button></p>
+                </div>
+                <div class="colu-2 ">
+                    <p>Interés<button id="filtrointeres"><i class="fas fa-exchange-alt fa-rotate-90"></i></button></p>
+                </div>
+                <div class="colu-1 ">
+                    <p>Acciones</p>
+                </div>
+                
+            </div>  
+            <div class="listadecontactos"></div>
+        </div>
+    </section>
+    <section id="usuarios">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 colu-6">
+                </div>
+                <div class="col-12 colu-6">
+                    <button class="boton-grande" onclick="crearnuevousuario()">Agregar usuario</button>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid grilla">
+            <div class="row filagrilla1">
+                <div class="colu-2 ">
+                    <input type="checkbox" onclick="checkAll(this)">
+                </div>
+                <div class="col-12 colu-2  ">
+                    <p>Nombre</p>
+                </div>
+                <div class=" colu-2  ">
+                    <p>Apellido</p>
+                </div>
+                <div class="colu-2  ">
+                    <p>Email</p>
+                </div>
+                <div class="colu-2 ">
+                    <p>Perfil</p>
+                </div>
+                <div class="colu-2 ">
+                    <p>Acciones</p>
+                </div>
+            </div>  
+            <div class="listadeusuarios"></div>
+        </div>
+    </section>
+    <section id="companias">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 colu-6">
+                </div>
+                <div class="col-12 colu-6">
+                    <button class="boton-grande" onclick="crearnuevacompania()">Agregar</button>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid grilla">
+            <div class="row filagrilla1">
+                <div class="colu-1 ">
+                    <input type="checkbox" onclick="checkAll(this)">
+                </div>
+                <div class="col-12 colu-2  ">
+                    <p>Nombre</p>
+                </div>
+                <div class=" colu-2  ">
+                    <p>Direccion</p>
+                </div>
+                <div class="colu-2  ">
+                    <p>Email</p>
+                </div>
+                <div class=" colu-2  ">
+                    <p>Teléfono</p>
+                </div>
+                <div class="colu-2  ">
+                    <p>Ciudad</p>
+                </div>
+                <div class="colu-1 ">
+                    <p>Acciones</p>
+                </div>
+            </div>  
+            <div class="listadecompanias"></div>
+        </div>
+    </section>
+    <section id="regiones">
+        <p id="regtit">Hacé click para editar, agregar o eliminar</p>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 colu-6"></div>
+                <div class="col-12 colu-6">
+                    <button class="boton-grande" onclick="crearnuevorpc()">Agregar Región</button>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid grilla">
+            <div class="row filagrilla1">
+                <div class="colu-1"></div>
+                <div class="col-12 colu-3  ">
+                    <p>Región</p>
+                </div>
+                <div class=" colu-4  ">
+                    <p>País</p>
+                </div>
+                <div class="colu-4  ">
+                    <p>Ciudad</p>
+                </div>
+            </div> 
+            <div class="listaregiones"></div>
+        </div>
+    </section>
+    <section id="footer">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 colu-2">
+                        <label for="filas">Filas por página:</label>
+                        <select id="filas">
+                          <option value="2">2</option>
+                          <option value="3">3</option>
+                          <option value="1">1</option>
+                          <option value="5">5</option>
+                        </select>
+                </div>
+                <div class="col-12 colu-8"></div>
+                <div class="col-12 colu-2 row">
+                    <div>
+                        <p class="pp">1-
+                        <span id="filasenpagina">2</span>
+                        de
+                        <span id="filastotales"></span>
+                        filas</p></div>
+                    <!-- <div><i class="fas fa-chevron-left"></i></div>
+                    <div><i class="fas fa-chevron-right"></i></div> -->
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="container-fluid modallogin">
+            <div class="row">
+                <div class="headermodal row">
+                    <h1>LOGO</h1>
+                </div>
+                <div class="datosprincipales row">
+                    <h1>Bienvenido</h1>
+                </div>
+                <div class="datosprincipales2 row">
+                    <div class="colu-12 col-12">
+                        <input type="text" class="datospersonales" placeholder="Usuario" id="usuario">
+                    </div>
+                    <div class="colu-12 col-12">
+                        <input type="password" class="datospersonales" placeholder="Contraseña" id="pass">
+                    </div>
+                </div>
+                <div class="row"></div>
+                <div class="colu-6 col-0"></div>
+                <div class="colu-6 col-12 botonescontacto">
+                    <button id="ingresar">Ingresar</button>
+                </div>
+                <div></div>
+                <div></div>
+                <div></div>
+        </div>
+    </section>
+    <section class="container-fluid modalcontacto">
+        <div class="container-fluid nuevocontacto">
+            <div class="row">
+                <div class="headermodal row">
+                    <h1>Nuevo contacto</h1>
+                    <i class="fas fa-times close" onclick="cerrarnuevocontacto()"></i>
+                </div>
+            <form id="newcontact">
+                <div class="datosprincipales row">
+                    <div class="colu-1 col-0">
+                        <img src="./img/default-user.png" class="foto2" alt="Foto de contacto">
+                        <i class="fas fa-camera camara"></i>
+                        <input type="file" id="file">
+                    </div>
+                    <div class="colu-2 col-6">
+                        <p>Nombre <span class="asterisco">*</span></p>
+                        <input type="text" class="datospersonales" id="name" onkeyup="botones()" >
+                    </div>
+                    <div class="colu-2 col-6">
+                        <p>Apellido <span class="asterisco">*</span></p>
+                        <input type="text" class="datospersonales" id="lastname" onkeyup="botones()" >
+                    </div>
+                    <div class="colu-2 col-6">
+                        <p>Cargo <span class="asterisco">*</span></p>
+                        <input type="text" class="datospersonales" id="cargo" onkeyup="botones()">
+                    </div>
+                    <div class="colu-2 col-6">
+                        <p>Email <span class="asterisco">*</span></p>
+                        <input type="text" class="datospersonales" id="mail" onkeyup="botones()">
+                    </div>
+                    <div class="colu-2 col-6">
+                        <p>Compañía <span class="asterisco">*</span></p>
+                        <select name="selector_compañia" id="company" onchange="botones()">
+                            <option  disabled selected >Seleccionar compañía</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="datosprincipales2 row">
+                    <div class="colu-2 col-6">
+                        <p>Región</p>
+                            <select name="selector_región" id="region">
+                              <option  disabled selected id="reg">Seleccionar región</option>
+                            </select>
+                    </div>
+                    <div class="colu-2 col-6">
+                        <p>País</p>
+                            <select name="selector_país" class="grisado" id="pais" onclick="background('pais')">
+                              <option  disabled selected>Seleccionar país</option>
+                            </select>
+                    </div>
+                    <div class="colu-2 col-6">
+                        <p>Ciudad</p>
+                            <select name="selector_ciudad" class="grisado" id="ciudad" onclick="background('ciudad')">
+                              <option  disabled selected>Seleccionar ciudad</option>
+                            </select>
+                    </div>
+                    <div class="colu-2 col-6">
+                        <p>Dirección</p>
+                        <input type="text" class="datospersonales grisado" placeholder="Ingresa una dirección" id="direccion" onclick="background('direccion')">
+                    </div>
+                    <div class="colu-2 col-6">
+                        <p>Interés </p>
+                        <input type="range" min="0" max="100" value="0" class="slider" id="myRange" step="25">
+                    </div>
+                    <div class="colu-1 col-6">
+                        <p style="visibility: hidden;">Interés </p>
+                            <select name="selector_porcentajes" id="selector_porcentajes">
+                              <option value="0">0%</option>
+                              <option value="25">25%</option>
+                              <option value="50">50%</option>
+                              <option value="75">75%</option>
+                              <option value="100">100%</option>
+                            </select>
+                    </div>
+                </div>
+                <div class="datosprincipales2 row canales">
+                    <div class="colu-2 col-6">
+                        <p>Canal de contacto</p>
+                            <select name="selector_canal" disabled class="grisado" onclick="background('canal')" id="canal">
+                              <option value="Twitter">Twitter</option>
+                            </select>
+                    </div>
+                    <div class="colu-2 col-6">
+                        <p>Cuenta de usuario</p>
+                        <input type="text" class="datospersonales grisado" placeholder="@ejemplo"  onclick="background('cuenta')" id="cuenta">
+                    </div>
+                    <div class="colu-2 col-6">
+                        <p>Preferencias</p>
+                            <select name="selector_ciudad" class="grisado" id="preferencias" onclick="background('preferencias')">
+                              <option value="Sin Preferencia">Sin Preferencia</option>
+                              <option value="Canal Favorito">Canal Favorito</option>
+                              <option value="No Molestar">No Molestar</option>
+                            </select>
+                    </div>
+                </div>
+                <div class="datosprincipales2 row canales">
+                    <div class="colu-2 col-6">
+                        <p>Canal de contacto</p>
+                            <select name="selector_canal" disabled class="grisado" id="canal2" onclick="background('canal2')">
+                              <option value="Facebook">Facebook</option>
+                            </select>
+                    </div>
+                    <div class="colu-2 col-6">
+                        <p>Cuenta de usuario</p>
+                        <input type="text" class="datospersonales grisado" placeholder="@ejemplo" id="cuenta2" onclick="background('cuenta2')">
+                    </div>
+                    <div class="colu-2 col-6">
+                        <p>Preferencias</p>
+                            <select name="selector_ciudad" class="grisado" id="preferencias2" onclick="background('preferencias2')">
+                              <option value="Sin Preferencia">Sin Preferencia</option>
+                              <option value="Canal Favorito">Canal Favorito</option>
+                              <option value="No Molestar">No Molestar</option>
+                            </select>
+                    </div>
+                </div>
+                <div class="row"></div>
+                <div class="colu-6 col-0"></div>
+                <div class="colu-6 col-12 botonescontacto" >
+                    <button id="cancelar" onclick="cerrarnuevocontacto()">Cancelar</button>
+                    <button id="guardar">Guardar contacto</button>
+                </div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </form>
+            </div>
+        </div>
+    </section>
+    <section class="container-fluid modalcontacto2">
+        <div class="container-fluid nuevocontacto">
+            <div class="row">
+                <div class="headermodal row">
+                    <h1>Editar contacto</h1>
+                    <i class="fas fa-times close" onclick="cerrareditor()"></i>
+                </div>
+            <form id="newcontact2">
+                <div class="datosprincipales row">
+                    <div class="colu-1 col-0">
+                        <img src="./img/default-user.png" class="foto22" alt="Foto de contacto">
+                        <i class="fas fa-camera camara"></i>
+                        <input type="file" id="file2">
+                    </div>
+                    <div class="colu-2 col-6">
+                        <p>Nombre <span class="asterisco">*</span></p>
+                        <input type="text" class="datospersonales" id="name2" onkeyup="botones2()" >
+                    </div>
+                    <div class="colu-2 col-6">
+                        <p>Apellido <span class="asterisco">*</span></p>
+                        <input type="text" class="datospersonales" id="lastname2" onkeyup="botones2()" >
+                    </div>
+                    <div class="colu-2 col-6">
+                        <p>Cargo <span class="asterisco">*</span></p>
+                        <input type="text" class="datospersonales" id="cargo2" onkeyup="botones2()">
+                    </div>
+                    <div class="colu-2 col-6">
+                        <p>Email <span class="asterisco">*</span></p>
+                        <input type="text" class="datospersonales" id="mail2" onkeyup="botones2()">
+                    </div>
+                    <div class="colu-2 col-6">
+                        <p>Compañía <span class="asterisco">*</span></p>
+                        <!-- <input type="text" class="datospersonales" placeholder="Ingresar nombre de compañía" id="company2" onkeyup="botones2()"> -->
+                        <select name="selector_compañia2" id="company2" onchange="botones2()" >
+                            <option  disabled selected >Seleccionar compañía</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="datosprincipales2 row">
+                    <div class="colu-2 col-6">
+                        <p>Región</p>
+                            <select name="selector_región" id="region2">
+                              <option  disabled selected >Seleccionar región</option>
+                            </select>
+                    </div>
+                    <div class="colu-2 col-6">
+                        <p>País</p>
+                            <select name="selector_país"  id="pais2" onclick="background('pais')">
+                              <option  disabled selected>Seleccionar país</option>
+                            </select>
+                    </div>
+                    <div class="colu-2 col-6">
+                        <p>Ciudad</p>
+                            <select name="selector_ciudad"  id="ciudad2" onclick="background('ciudad')">
+                              <option  disabled selected>Seleccionar ciudad</option>
+                            </select>
+                    </div>
+                    <div class="colu-2 col-6">
+                        <p>Dirección</p>
+                        <input type="text" class="datospersonales" placeholder="Ingresa una dirección" id="direccion2" onclick="background('direccion')">
+                    </div>
+                    <div class="colu-2 col-6">
+                        <p>Interés </p>
+                        <input type="range" min="0" max="100" value="0" class="slider" id="myRange2" step="25">
+                    </div>
+                    <div class="colu-1 col-6">
+                        <p style="visibility: hidden;">Interés </p>
+
+                            <select name="selector_porcentajes" id="selector_porcentajes2">
+                              <option value="0">0%</option>
+                              <option value="25">25%</option>
+                              <option value="50">50%</option>
+                              <option value="75">75%</option>
+                              <option value="100">100%</option>
+                            </select>
+                    </div>
+                </div>
+                <div class="datosprincipales2 row canales">
+                    <div class="colu-2 col-6">
+                        <p>Canal de contacto</p>
+                            <select name="selector_canal" disabled  onclick="background('canal')" id="canal22">
+                              <option value="Twitter">Twitter</option>
+                            </select>
+                    </div>
+                    <div class="colu-2 col-6">
+                        <p>Cuenta de usuario</p>
+                        <input type="text" class="datospersonales " placeholder="@ejemplo"  onclick="background('cuenta')" id="cuenta22">
+                    </div>
+                    <div class="colu-2 col-6">
+                        <p>Preferencias</p>
+                            <select name="selector_ciudad"  id="preferencias22" onclick="background('preferencias')">
+                              <option value="Sin Preferencia">Sin Preferencia</option>
+                              <option value="Canal Favorito">Canal Favorito</option>
+                              <option value="No Molestar">No Molestar</option>
+                            </select>
+                    </div>
+                </div>
+                <div class="datosprincipales2 row canales">
+                    <div class="colu-2 col-6">
+                        <p>Canal de contacto</p>
+                            <select name="selector_canal" disabled  id="canal222" onclick="background('canal2')">
+                              <option value="Facebook">Facebook</option>
+                            </select>
+                    </div>
+                    <div class="colu-2 col-6">
+                        <p>Cuenta de usuario</p>
+                        <input type="text" class="datospersonales " placeholder="@ejemplo" id="cuenta222" onclick="background('cuenta2')">
+                    </div>
+                    <div class="colu-2 col-6">
+                        <p>Preferencias</p>
+                            <select name="selector_ciudad"  id="preferencias222" onclick="background('preferencias2')">
+                              <option value="Sin Preferencia">Sin Preferencia</option>
+                              <option value="Canal Favorito">Canal Favorito</option>
+                              <option value="No Molestar">No Molestar</option>
+                            </select>
+                    </div>
+                </div>
+                <div class="colu-6 col-0"></div>
+                <div class="colu-6 col-12 botonescontacto2">
+                    <button id="cancelar2" >Eliminar Contacto</button>
+                    <button id="guardar2">Guardar contacto</button>
+                </div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </form>
+            </div>
+        </div>
+    </section>
+    <section class="container-fluid modalusuario">
+        <div class="container-fluid nuevousuario">
+            <div class="row">
+                <div class="headermodal row">
+                    <h1>Nuevo Usuario</h1>
+                    <i class="fas fa-times close" onclick="cerrarnuevousuario()"></i>
+                </div>
+            <form  id="newuser">
+                <div class="datosprincipales row">
+                    <div class="colu-25 col-6 ">
+                        <p>Nombre </p>
+                        <input type="text" class="datospersonales" id="nameuser">
+                    </div>
+                    <div class="colu-25 col-6 ">
+                        <p>Apellido</p>
+                        <input type="text" class="datospersonales" id="lastnameuser">
+                    </div>
+                    <div class="colu-25 col-6 ">
+                        <p>Email</p>
+                        <input type="text" class="datospersonales" id="mailuser" >
+                    </div>
+                    <div class="colu-25 col-6 ">
+                        <p>Perfil</p>
+                            <select name="selector_perfil" id="perfil">
+                              <option  disabled selected >Seleccionar opción</option>
+                              <option value="Admin">Admin</option>
+                              <option value="Básico">Básico</option>
+                            </select>
+                    </div>
+                </div>
+                <div class="datosprincipales2 row">
+                    <div class="colu-25 col-6">
+                        <p>Usuario</p>
+                        <input type="text" class="datospersonales" id="user" >
+                    </div>
+                    <div class="colu-25 col-6">
+                        <p>Contraseña</p>
+                        <input type="password" class="datospersonales" id="passuser" >
+                    </div>
+                    <div class="colu-25 col-6">
+                        <p>Repetir contraseña</p>
+                        <input type="password" class="datospersonales" id="pass2" >
+                    </div>
+                </div> 
+                </form>
+                    <div class="colu-6 col-0"></div>
+
+                    <div class="colu-6 col-12 botonescontacto2">
+                        <button id="deleteuser">Eliminar</button>
+                        <button id="guardarusuario">Guardar</button>
+                    </div>
+    
+                <div></div>
+                <div></div>
+                <div></div>
+            
+            </div>
+        </div>
+    </section>
+    <section class="container-fluid modalusuario2">
+        <div class="container-fluid nuevousuario">
+            <div class="row">
+                <div class="headermodal row">
+                    <h1>Editar Usuario</h1>
+                    <i class="fas fa-times close" onclick="cerrarnuevousuario2()"></i>
+                </div>
+            <form  id="newuser2">
+                <div class="datosprincipales row">
+                    <div class="colu-25 col-6 ">
+                        <p>Nombre </p>
+                        <input type="text" class="datospersonales" id="nameuser2">
+                    </div>
+                    <div class="colu-25 col-6 ">
+                        <p>Apellido</p>
+                        <input type="text" class="datospersonales" id="lastnameuser2">
+                    </div>
+                    <div class="colu-25 col-6 ">
+                        <p>Email</p>
+                        <input type="text" class="datospersonales" id="mailuser2" >
+                    </div>
+                    <div class="colu-25 col-6 ">
+                        <p>Perfil</p>
+                            <select name="selector_perfil" id="perfil2">
+                              <option  disabled selected >Seleccionar opción</option>
+                              <option value="Admin">Admin</option>
+                              <option value="Básico">Básico</option>
+                            </select>
+                    </div>
+                </div>
+                <div class="datosprincipales2 row">
+                    <div class="colu-25 col-6">
+                        <p>Usuario</p>
+                        <input type="text" class="datospersonales" id="user2" >
+                    </div>
+                    <div class="colu-25 col-6">
+                        <p>Contraseña</p>
+                        <input type="password" class="datospersonales" id="passuser2" >
+                    </div>
+                    <div class="colu-25 col-6">
+                        <p>Repetir contraseña</p>
+                        <input type="password" class="datospersonales" id="pass22" >
+                    </div>
+                </div> 
+                </form>
+                    <div class="colu-6 col-0"></div>
+
+                    <div class="colu-6 col-12 botonescontacto2">
+                        <button id="deleteuser2">Eliminar</button>
+                        <button id="guardarusuario2">Guardar</button>
+                    </div>
+    
+                <div></div>
+                <div></div>
+                <div></div>
+            
+            </div>
+        </div>
+    </section>
+    <section class="container-fluid modalcompania">
+        <div class="container-fluid nuevacompania">
+            <div class="row">
+                <div class="headermodal row">
+                    <h1>Nueva Compañía</h1>
+                    <i class="fas fa-times close" onclick="cerrarnuevacompania()"></i>
+                </div>
+            <form id="newcompany">
+                <div class="datosprincipales row">
+                    <div class="colu-2 col-6 ">
+                        <p>Nombre </p>
+                        <input type="text" class="datospersonales" id="namecompany">
+                    </div>
+                    <div class="colu-2 col-6 ">
+                        <p>Direccion</p>
+                        <input type="text" class="datospersonales" id="addresscompany">
+                    </div>
+                    <div class="colu-2 col-6 ">
+                        <p>Email</p>
+                        <input type="text" class="datospersonales" id="mailcompany" >
+                    </div>
+                    <div class="colu-2 col-6 ">
+                        <p>Telefono</p>
+                        <input type="text" class="datospersonales" id="telcompany" >
+                    </div>
+                    <div class="colu-2 col-6 ">
+                        <p>Ciudad</p>
+                            <select name="selector_ciudad"  id="ciudad3" >
+                              <option  disabled selected>Seleccionar ciudad</option>
+                            </select>
+                    </div>
+                </div>
+                </form>
+                    <div class="colu-6 col-0"></div>
+
+                    <div class="colu-6 col-12 botonescontacto2">
+                        <button id="deletecompany">Eliminar</button>
+                        <button id="guardarcompany">Guardar</button>
+                    </div>
+    
+                <div></div>
+                <div></div>
+                <div></div>
+            
+            </div>
+        </div>
+    </section>
+    <section class="container-fluid modalcompania2">
+        <div class="container-fluid nuevacompania2">
+            <div class="row">
+                <div class="headermodal row">
+                    <h1>Editar Compañía</h1>
+                    <i class="fas fa-times close" onclick="cerrarnuevacompania2()"></i>
+                </div>
+            <form  id="newcompany2">
+                <div class="datosprincipales row">
+                    <div class="colu-2 col-6 ">
+                        <p>Nombre </p>
+                        <input type="text" class="datospersonales" id="namecompany2">
+                    </div>
+                    <div class="colu-2 col-6 ">
+                        <p>Direccion</p>
+                        <input type="text" class="datospersonales" id="addresscompany2">
+                    </div>
+                    <div class="colu-2 col-6 ">
+                        <p>Email</p>
+                        <input type="text" class="datospersonales" id="mailcompany2" >
+                    </div>
+                    <div class="colu-2 col-6 ">
+                        <p>Telefono</p>
+                        <input type="text" class="datospersonales" id="telcompany2" >
+                    </div>
+                    <div class="colu-2 col-6 ">
+                        <p>Ciudad</p>
+                        <input type="text" class="datospersonales" id="citycompany2" >
+                    </div>
+                </div>
+                </form>
+                    <div class="colu-6 col-0"></div>
+
+                    <div class="colu-6 col-12 " id="botonescompania2">
+                        <button id="deletecompany2">Eliminar</button>
+                        <button id="guardarcompany2">Guardar</button>
+                    </div>
+    
+                <div></div>
+                <div></div>
+                <div></div>
+            
+            </div>
+        </div>
+    </section>
+    <section class="container-fluid modaleliminar">
+        <div class="row eliminarcontacto">
+            <div class="colu-12">
+                <img src="./img/remove-user.png" alt="Ícono eliminar usuario" id="eliminarusuario">
+                <p>¿Seguro que deseas eliminar los contactos seleccionados?</p>
+            </div>
+            <div class="colu-6 col-12">
+                <button id="cancel">Cancelar</button>
+            </div>
+            <div class="colu-6 col-12">
+                <button id="eliminar">Eliminar</button>
+            </div>
+            <div class="busq"></div>
+        </div>
+    </section>
+    <section class="container-fluid modaleliminar2">
+        <div class="row eliminarcontacto">
+            <div class="colu-12">
+                <img src="./img/remove-user.png" alt="Ícono eliminar usuario" id="eliminarusuario2">
+                <p>¿Seguro que deseas eliminar los contactos seleccionados?</p>
+            </div>
+            <div class="colu-6 col-12">
+                <button id="cancel2">Cancelar</button>
+            </div>
+            <div class="colu-6 col-12">
+                <button id="eliminar2">Eliminar</button>
+            </div>
+            <div class="busq"></div>
+        </div>
+    </section>
+    <section class="container-fluid modaleliminar3">
+        <div class="row eliminarcontacto">
+            <div class="colu-12">
+                <img src="./img/remove-user.png" alt="Ícono eliminar usuario" id="eliminarusuario3">
+                <p>¿Seguro que deseas eliminar los contactos seleccionados?</p>
+            </div>
+            <div class="colu-6 col-12">
+                <button id="cancel3">Cancelar</button>
+            </div>
+            <div class="colu-6 col-12">
+                <button id="eliminar3">Eliminar</button>
+            </div>
+            <div class="busq"></div>
+        </div>
+    </section>
+    <section class="container-fluid modaleliminar4">
+        <div class="row eliminarcontacto">
+            <div class="colu-12">
+                <img src="./img/remove-user.png" alt="Ícono eliminar usuario" id="eliminarusuario4">
+                <p>¿Seguro que deseas eliminar los contactos seleccionados?</p>
+            </div>
+            <div class="colu-6 col-12">
+                <button id="cancel4">Cancelar</button>
+            </div>
+            <div class="colu-6 col-12">
+                <button id="eliminar4">Eliminar</button>
+            </div>
+            <div class="busq"></div>
+        </div>
+    </section>
+    <section class="container-fluid crudciudad">
+        <div class="row eliminarcontacto">
+            <div class="colu-12">
+                <div class="row">
+                    <h1 class="regh1">Edita tu Ciudad!</h1>
+                    <i class="fas fa-times close" onclick="cerrarciudad()"></i>    
+                </div>
+                <input type="text" class="datospersonales" id="inputrpc">
+            </div>
+            <div class="colu-6 col-12">
+                <button id="cancel5">Actualizar</button>
+            </div>
+            <div class="colu-6 col-12">
+                <button id="eliminar5">Eliminar</button>
+            </div>
+            <div class="colu-12">
+                <div class="row">
+                    <h1 class="regh1">Agrega una ciudad a <span id="paisciudad"></span></h1>
+                </div>
+                <input type="text" class="datospersonales" id="inputrpc2">
+            </div>
+            <div class="colu-12 col-12">
+                <button id="cancel6">Guardar</button>
+            </div>
+        </div>
+        
+    </section>
+    <section class="container-fluid crudpais">
+        <div class="row eliminarcontacto">
+            <div class="colu-12">
+                <div class="row">
+                    <h1 class="regh1">Edita tu País!</h1>
+                    <i class="fas fa-times close" onclick="cerrarpais()"></i>    
+                </div>
+                <input type="text" class="datospersonales" id="inputpais">
+            </div>
+            <div class="colu-6 col-12">
+                <button id="cancel7">Actualizar</button>
+            </div>
+            <div class="colu-6 col-12">
+                <button id="eliminar6">Eliminar</button>
+            </div>
+            <div class="colu-12">
+                <div class="row">
+                    <h1 class="regh1">Agrega un país a <span id="regpais"></span></h1>
+                </div>
+                <input type="text" class="datospersonales" id="inputpais2">
+            </div>
+            <div class="colu-12 col-12">
+                <button id="cancel8">Guardar</button>
+            </div>
+        </div>
+    </section>
+    <section class="container-fluid crudreg">
+        <div class="row eliminarcontacto">
+            <div class="colu-12">
+                <div class="row">
+                    <h1 class="regh1">Edita tu Región!</h1>
+                    <i class="fas fa-times close" onclick="cerrarregion()"></i>    
+                </div>
+                <input type="text" class="datospersonales" id="inputreg">
+            </div>
+            <div class="colu-6 col-12">
+                <button id="cancel9">Actualizar</button>
+            </div>
+            <div class="colu-6 col-12">
+                <button id="eliminar7">Eliminar</button>
+            </div>
+            <div class="colu-12">
+                <div class="row">
+                    <h1 class="regh1">Agrega una región </h1>
+                </div>
+                <input type="text" class="datospersonales" id="inputreg2">
+            </div>
+            <div class="colu-12 col-12">
+                <button id="cancel10">Guardar</button>
+            </div>
+        </div>
+    </section>
+    <section class="container-fluid crudreg2">
+        <div class="row eliminarcontacto">
+            <div class="colu-12">
+                <div class="row">
+                    <h1 class="regh1">Agrega una región </h1>
+                    <i class="fas fa-times close" onclick="cerrarregion2()"></i>    
+                </div>
+                <input type="text" class="datospersonales" id="inputreg3">
+            </div>
+            <div class="colu-12 col-12">
+                <button id="cancel11">Guardar</button>
+            </div>
+        </div>
+    </section>
+    <script src="/js/services/login.js"></script>
+    <script src="/js/services/sesion.js"></script>
+    <script src="/js/services/selectregion.js"></script>
+    <script src="/js/services/mostrarusuarios.js"></script>
+    <script src="/js/services/mostrarcompanias.js"></script>
+    <script src="/js/services/mostrarregiones.js"></script>
+    <script src="/js/services/ciudades.js"></script>
+    <script src="/js/services/selectcompanias.js"></script>
+    <script src="/js/services/nuevocontacto.js"></script>
+    <script src="/js/services/selectorciudad.js"></script>
+    <script src="/js/services/contactoss.js"></script>
+
+</body>
+</html>

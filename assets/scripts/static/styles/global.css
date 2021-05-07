@@ -1,0 +1,663 @@
+/*GENERAL*/
+.container{
+    padding: 0px 16px; 
+}
+.container-fluid{
+    padding: 0px;
+}
+.row{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+body{
+    font-family: 'Open Sans', sans-serif;
+    margin: 0;
+    color: black;
+}
+h1{
+    font-size: 17.6px;
+}
+header button{
+    font-size: 14px;
+    text-decoration: none;
+    color: white;
+    width: 100px;
+    border: none;
+    background-color: #1D72C2;
+}
+p{
+    font-size: 12px;
+    margin:0;
+}
+button{
+    font-family: 'Open Sans', sans-serif;
+    font-size: 13.4px;
+    outline: none;
+}
+button:hover:enabled{
+    cursor: pointer;
+}
+label, #filas {
+    font-size: 12px;
+    border: none;
+}
+#filas {
+    width: 35px;
+}
+label{
+    margin-left: 29.2px;
+}
+
+/*MOBILE COLUMNS*/
+.col-0{
+    width: calc( 8.3% * 0 ) ; 
+}
+.col-6{
+    width: calc( 8.3% * 6 ) ; 
+}
+
+.col-12{
+    width: calc( 8.3% * 12 ) ; 
+}
+
+/*HEADER*/
+
+header{
+    width: 100%;
+    height: 70px;
+    background-color: #1D72C2;
+    color: white;
+}
+header h1{
+    margin: 23.6px 0px 22.8px 29.9px;
+}
+.links-header{
+    margin: 24.9px 30px 24.8px 0px;
+
+}
+
+/*BUSCADOR*/
+#buscador{
+    width: 502px;
+    height: 41px;
+    margin: 20.3px 9px 0px 29.5px;
+    border: 1px solid #CCCCCC;
+    border-radius: 3.5px;
+}
+.boton-peq{
+    width: 41px;
+    height: 45px;
+    border: 1px solid rgba(0,0,0,0.25);
+    border-radius: 3.5px;
+    background-color: white;
+    padding: 0;
+    margin-top: 20.3px
+}
+.boton-grande{
+    width: 173px;
+    height: 42px;
+    border:  rgba(0,0,0,0.25);
+    border-radius: 2px;
+    background-color: #1D72C2;
+    padding: 12px 31.3px 12.6px 31px;
+    margin: 77px 28px 0 408px;
+    color: white;
+}
+#usuarios .boton-grande, #companias .boton-grande, #regiones .boton-grande{
+    margin: 30px 28px 15px 408px;
+}
+#lupa{
+    width: 17.5px;
+    height: 17.5px;
+    color: #1D72C2;
+}
+#buscar h1{
+    margin: 39.6px 0 0 29.4px;
+}
+
+/*ACCIONES*/
+.acciones{
+    margin-top: 25px;
+    margin-bottom: 4.5px;
+    visibility: hidden;
+}
+#acciones p button, #acciones i{
+    color: #1D72C2;
+    font-size: 13px;
+    background-color: white;
+    border: none;
+}
+#acciones p{
+    margin-left: 510px;
+}
+#cantidadseleccionados{
+    background: #E6F2FE;
+    border-radius: 4px;
+    color: #0683F9;
+    border: none;
+    margin-left: 28px;
+    font-size: 11px;
+    padding: 8px 11px;
+}
+
+/*GRILLA*/
+.grilla{
+    margin-left: 27.5px;
+    border: 1px solid rgba(0,0,0,0.10);
+    width: 1310px;
+    /*height: 67.5px;*/
+    box-sizing: border-box;
+    position: static;
+    /*top: 345px; 
+    z-index: 1;*/
+    /*flex-direction: column;*/
+}
+.grilla button{
+    border: none;
+    background-color: rgba(255,255,255,0);
+}
+.grilla .botoniconos{
+    background-color: rgba(242,242,242,0);
+    display: none;
+}
+.grilla i{
+    width: 9.3px;
+    height: 12px;
+}
+.grilla input{
+    margin-left: 17.5px;
+}
+.filagrilla, .filagrilla1{
+    padding-top: 28px;
+    padding-bottom: 23.9px;
+}
+.filagrilla:hover .botoniconos{
+    background-color: rgba(242,242,242,0);
+    display: block;
+}
+.filagrilla:hover .puntos{
+    background-color: rgba(242,242,242,0);
+    display: none;
+}
+.filagrilla:hover{
+    background: rgba(0,0,0,0.05);
+}
+.filagrilla:hover button{
+    background-color: rgba(242,242,242,0);
+}
+.titulos :hover{
+    background-color: white;
+}
+
+.puntos{
+    margin-left: 15px;
+}
+.fa-trash, .fa-pencil{
+    color:  rgba(0,0,0,0.50);
+    width: 11.7px;
+    height: 15px;
+    background: rgba(0,0,0,0.05);
+    margin-right: 10px;
+}
+.subtexto{
+    font-size: 10px;
+    color: rgba(0,0,0,0.50);
+}
+hr{
+    width: 109.1px;
+    height: 8px;
+    /*background: #DE0028;*/
+    border-radius: 4px;
+    border: none;
+    margin: 5px 0 0 15.5px;
+}
+[class="100%"]{
+    background: #DE0028;
+}
+[class="75%"]{
+    background: -webkit-linear-gradient(left, #FF6F00 0%, #FF6F00 75% , #DDDDDD 75%, #DDDDDD  100%);
+}
+[class="50%"]{
+    background: -webkit-linear-gradient(left, #FFC700 0%, #FFC700 50% , #DDDDDD 50%, #DDDDDD  100%);
+}
+[class="25%"]{
+    background: -webkit-linear-gradient(left, #1CC1F5 0%, #1CC1F5 25% , #DDDDDD 25%, #DDDDDD  100%);
+}
+[class="0%"]{
+    background: #DDDDDD;
+}
+.foto{
+    width: 24px;
+    height: 24px;
+    border-radius: 12px;
+    margin-top: 4px;
+    margin-right: 8px;
+}
+.fotodiv{
+    width: 24px;
+}
+/*FOOTER*/
+#footer{
+    margin-top: 23.8px;
+}
+#footer i{
+    /*margin-top: 11px;*/
+    margin-left: 40px;
+}
+.fa-chevron-left, .fa-chevron-right{
+    visibility: hidden;
+}
+.pp{
+    margin-left: 120px;
+}
+
+/*MODAL NUEVO CONTACTO*/
+.close:hover{
+    cursor: pointer;
+}
+.modalcontacto,.modalcontacto2, .modaleliminar, .modaleliminar2,.modaleliminar3, .modaleliminar4,.modalusuario, .modalusuario2, .modalcompania, .modalcompania2, .crudciudad, .crudpais, .crudreg, .crudreg2{
+    background: rgba(0,0,0,0.80);
+    width: 100%;
+    height: 100%;
+    position: fixed; 
+    z-index: 1; 
+    left: 0;
+    top: 0;
+    display: none;
+}
+
+.nuevocontacto, .nuevousuario, .nuevacompania, .nuevacompania2{
+    width: 1215px;
+    height: 550px;
+    background-color: white;
+    margin: 46px 0 0 76px;
+}
+.nuevousuario, .nuevacompania, .nuevacompania2{
+    height: 390px;
+}
+.headermodal{
+    height: 140px;
+    background-color: #1D72C2;
+    width: 1215px;
+    color: white;
+}
+.nuevocontacto h1, .nuevousuario h1, .nuevacompania h1, .nuevacompania2 h1{
+    margin: 26.7px 978.7px 0 31.8px;
+}
+.nuevocontacto .close,  .nuevousuario .close, .nuevacompania .close ,.nuevacompania2 .close{
+    margin: 27px 35px 0 0;
+}
+.nuevocontacto p,  .nuevousuario {
+    margin-bottom: 7.5px;
+}
+.asterisco{
+    color: red;
+}
+.datosprincipales{
+    width: 1172px;
+    height: 131px;
+    border: 3px solid #0683F9;
+    border-radius: 6.5px;
+    z-index: 3;
+    top: -57.5px;
+    margin-left: 21.5px;
+    position: relative;
+    background-color: white;
+    outline: none;
+}
+.datosprincipales div{
+    margin: 34.4px  0 0 15.5px;
+    height: 100px;
+}
+.foto2 ,.foto22{
+    width: 85px;
+    height: 84px;
+    border: 2px solid #0683F9;
+    border-radius: 50%;
+    margin-top: 25px;
+    top: -35px;
+    position: relative;
+}
+.foto2:hover, .foto22:hover{
+    cursor: pointer;
+}
+.camara{
+    background: #0683F9;
+    color:  #FFFFFF;
+    border-radius: 50%;
+    z-index: 4;
+    top: -70px;
+    left:65px ;
+    position: relative;
+    padding: 8px;
+}
+.camara:hover{
+    cursor: pointer;
+}
+#file, #file2{
+    display: none;
+}
+.datospersonales{
+    width: 190px;
+    height: 35.5px;
+    border: 1px solid #CCCCCC;
+}
+select{
+    width: 190px;
+    height: 39px;
+    border: 1px solid #CCCCCC;
+}
+#selector_porcentajes, #selector_porcentajes2{
+    width: 70px;
+    height: 35px;
+}
+.datosprincipales2{
+    margin: -40px 0 0 32px;
+    width: 1215px;
+}
+.datosprincipales2 div{
+    margin: 0 16px 0 0;
+}
+select {
+    color:rgba(0,0,0,0.60);
+}
+option:not(:first-of-type) {
+    color: black;
+}
+#selector_porcentajes, #selector_porcentajes{
+    color:rgba(0,0,0);
+}
+.grisado{
+    background: rgba(0,0,0,0.10);
+}
+.botonescontacto, .botonescontacto2{
+    margin: 10px 30px 30px 900px;
+}
+.nuevocontacto .botonescontacto2{
+    margin: 10px 30px 30px 600px;
+}
+#guardar, #cancelar,#guardar2, #cancelar2, #guardarusuario,#guardarusuario2, #deleteuser, #deleteuser2, #guardarcompany,#guardarcompany2, #deletecompany, #deletecompany2{
+    width: 173px;
+    height: 42px;
+    background-color: rgba(0,0,0,0.25);
+    color: white;
+    border-radius: 2px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: bold;
+    font-size: 13.4px;
+    outline: none;
+    border: none;
+}
+#guardarusuario,#guardarusuario2, #guardarcompany,#guardarcompany2{
+    margin: 25px 0 0 0px;
+}
+
+#deleteuser,  #deleteuser2, #deletecompany, #deletecompany2{
+    margin-left: 400px;
+}
+
+#cancelar, #cancelar2{
+    width: 90px;
+    color: rgba(0,0,0,0.25);
+    background-color: white;
+    margin-right: 10px;
+}
+#cancelar2{
+    margin-left: 200px;
+    width: 173px;
+}
+#guardar:enabled, #guardar2:enabled, #guardarusuario, #guardarusuario2, #guardarcompany, #guardarcompany2{
+    background-color: #0683F9;
+}
+#cancelar:enabled, #cancelar2:enabled, #deleteuser, #deleteuser2, #deletecompany, #deletecompany2{
+    color: red;
+}
+#deleteuser, #deleteuser2, #deletecompany, #deletecompany2{
+    background-color: white;
+}
+.slidecontainer {
+    width: 200px;
+  }
+  
+  .slider {
+    -webkit-appearance: none;
+    width: 200px;
+    height: 13px;
+    background: white;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+    border: 1px solid #C6CACC;
+    border-radius: 3.5px;
+    overflow: hidden;
+    
+    background: repeating-linear-gradient(90deg, #777, #777 1px, transparent 1px, transparent 50px) 
+    no-repeat 50% 50%;
+  }
+  
+  .slider:hover {
+    opacity: 1;
+  }
+  
+  .slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 19px;
+    height: 19px;
+    cursor: pointer;
+    border-radius: 50%;
+    border: 1px solid #C6CACC;
+    background-color: white;
+    box-shadow: -407px 0 0 400px #0683F9;
+  }
+  
+  .slider::-moz-range-thumb {
+    width: 19px;
+    height: 19px;
+    cursor: pointer;
+  }
+
+  .sliderfill ,   .sliderfill2{
+    border:0 none;
+    border-radius:3.2px;
+    margin:0;
+    padding:0;
+    height:100%;
+  }
+
+  .canales{
+      margin-top: 15px;
+  }
+  .canales div{
+    margin: 0 20px 0 0;
+  }
+/*MODAL ELIMINAR CONTACTO*/
+.eliminarcontacto{
+    width: 339px;
+    height: 403px;
+    margin: 150px 0 0 514px;
+    background-color: white;
+}
+.eliminarcontacto p{
+    margin: 10px 0 0 30px;
+    font-size: 15px;
+    text-align: center;
+    width: 275px;
+    height: 30px;
+}
+.eliminarcontacto button{
+    width: 130px;
+    height: 41px;
+    padding: 9.9px 36.2px 10.3px 38px;
+    margin-left: 21px;
+    border-radius: 2px;
+}
+#cancel, #cancel2, #cancel3, #cancel4,#cancel5,#cancel6,#cancel7,#cancel8,#cancel9,#cancel10,#cancel11{
+    color: #0683F9;
+    background-color: white;
+    border-color: #0683F9;
+}
+#cancel6,#cancel8,#cancel10, #cancel11{
+    margin-left: 95px;
+}
+#eliminar, #eliminar2, #eliminar3, #eliminar4, #eliminar5, #eliminar6, #eliminar7{
+    font-weight: bold;
+    background-color: #F03738;
+    border: none;
+    color: white;
+}
+#eliminarusuario, #eliminarusuario2, #eliminarusuario3, #eliminarusuario4{
+    height: 120px;
+    width: 120px;
+    margin: 26px 0 0 117px;
+}
+
+/*MODAL LOG IN*/
+.modallogin{
+    width: 100%;
+    height: 100%;
+    position: fixed; 
+    z-index: 1; 
+    left: 0;
+    top: 0;
+    /*display: none;*/
+    background-color: white;
+}
+.modallogin .headermodal{
+    height: 140px;
+    background-color: #1D72C2;
+    width: 100%;
+    color: white;
+}
+.modallogin .headermodal h1{
+    margin: 26.7px 978.7px 0 31.8px;
+}
+.modallogin .datosprincipales{
+    width: 1000px;
+    height: 70px;
+    border: 3px solid #0683F9;
+    border-radius: 6.5px;
+    z-index: 3;
+    top: -40px;
+    margin-left: 175px;
+    position: relative;
+    background-color: white;
+    outline: none;
+    margin-bottom: 50px;
+}
+.modallogin .datosprincipales h1{
+    margin: auto;
+    color: #0683F9;
+    font-size: 27px;
+}
+.modallogin .datospersonales{
+    width: 161px;
+    height: 35.5px;
+    border: 1px solid #CCCCCC;
+    text-align: center;
+    font-size: 15px;
+}
+.modallogin .datosprincipales2 div, .modallogin .botonescontacto{
+    margin: 12px 30px 30px 600px;
+}
+.modallogin .datosprincipales2 div{
+    margin-left: 570px;
+}
+#ingresar{
+    width: 173px;
+    height: 42px;
+    background-color: #1D72C2;
+    color: white;
+    border-radius: 2px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: bold;
+    font-size: 16px;
+    outline: none;
+    border: none;
+}
+
+/*USUARIOS*/
+#usuarios, .modalusuario, #companias, .modalcompania, .modalcompania2{
+    display: none;
+}
+
+/*REGION PAIS CIUDAD*/
+#regiones{
+    display: none;
+}
+#regtit{
+    font-size: 15px;
+    margin-bottom: 25px;
+    margin-left: 25px;
+    font-weight: bold;
+}
+
+#regiones button{
+    border: none;
+    color: #0683F9;
+}
+
+#regiones .boton-grande{
+    color: white;
+}
+#inputrpc, #inputrpc2, #inputpais, #inputpais2, #inputreg, #inputreg2, #inputreg3{
+    margin: 20px 0 10px 65px;
+    text-align: center;
+}
+.regh1, .regh2{
+    margin: 25px 0 0 15px;
+}
+.crudciudad .close, .crudreg .close, .crudreg2 .close{
+    margin: 30px 0 0 140px;
+}
+.crudpais .close{
+    margin: 30px 0 0 160px;
+}
+.crudreg2 .eliminarcontacto{
+    height: 203px;
+}
+.crudreg2 .eliminarcontacto{
+    height: 203px;
+}
+
+@media (min-width: 800px){
+/*COLUMNS DESKTOP*/
+.colu-03{
+    width: calc( 8.3% * 0.3 ) ; 
+}
+.colu-1{
+    width: calc( 8.3% * 1 ) ; 
+}
+.colu-15{
+    width: calc( 8.3% * 1.5 ) ; 
+}
+.colu-17{
+    width: calc( 8.3% * 1.7 ) ; 
+}
+.colu-2{
+    width: calc( 8.3% * 2 ) ; 
+}
+.colu-25{
+    width: calc( 8.3% * 2.5 ) ; 
+}
+.colu-3{
+    width: calc( 8.3% * 3 ) ; 
+}
+.colu-4{
+    width: calc( 8.3% * 4 ) ; 
+}
+
+.colu-6{
+    width: calc( 8.3% * 6 ) ; 
+}
+.colu-69{
+    width: calc( 8.3% * 6.9 ) ; 
+}
+.colu-8{
+    width: calc( 8.3% * 8 ) ; 
+}
+.colu-12{
+    width: calc( 8.3% * 12 ) ; 
+}
+}
