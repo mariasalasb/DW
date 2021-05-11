@@ -22,7 +22,6 @@ function sesionactiva(){
       },
     })
     .then((response) =>{
-        console.log(response);
         const usuariologeado=document.cookie.user;
         if (response.status === 500) {
             document.getElementsByClassName("modallogin")[0].style.display="block";        

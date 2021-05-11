@@ -7,6 +7,25 @@ const cookieparser=require("cookie-parser");
 
 module.exports = {
 
+   
+
+    admin: (req,res) => {
+        const cookie=req.cookies.user;
+        DB.query("SELECT PERFIL FROM USUARIOS WHERE USUARIO='"+cookie+"'"  ,{
+            type:DB.QueryTypes.SELECT
+        }).then((resultado) => {
+            res.json(resultado);
+
+            /*if(resultado[0].PERFIL=='Admin'){
+                res.status(200);
+            }
+            else{
+                res.status(403).json("El usuario no tiene permisos para realizar esta acción");
+                console.log("El usuario no tiene permisos para realizar esta acción");
+            }*/
+        });
+    },
+
     contactlist: (req,res) => {
         const {amount}=req.query;
         const {filtro}=req.query;
@@ -124,7 +143,7 @@ module.exports = {
     },
 
     filterrcc: (req,res) => {
-        DB.query('SELECT R.ID AS REGION_ID,NOMBRE_REGION, P.ID AS PAIS_ID,NOMBRE_PAIS,C.ID AS CIUDAD_ID,NOMBRE_CIUDAD FROM REGIONES AS R INNER JOIN PAISES AS P ON P.ID_REGION=R.ID INNER JOIN CIUDADES AS C ON C.ID_PAIS=P.ID ORDER BY NOMBRE_REGION ASC',{
+        DB.query('SELECT R.ID AS REGION_ID,NOMBRE_REGION, P.ID AS PAIS_ID,NOMBRE_PAIS,C.ID AS CIUDAD_ID,NOMBRE_CIUDAD FROM REGIONES AS R LEFT OUTER JOIN PAISES AS P ON P.ID_REGION=R.ID LEFT OUTER JOIN CIUDADES AS C ON C.ID_PAIS=P.ID UNION SELECT R.ID AS REGION_ID,NOMBRE_REGION, P.ID AS PAIS_ID,NOMBRE_PAIS,C.ID AS CIUDAD_ID,NOMBRE_CIUDAD FROM REGIONES AS R RIGHT OUTER JOIN PAISES AS P ON P.ID_REGION=R.ID RIGHT OUTER JOIN CIUDADES AS C ON C.ID_PAIS=P.ID ORDER BY NOMBRE_REGION ASC',{
             type:DB.QueryTypes.SELECT
         }).then((resultado) => {
             res.json(resultado);
@@ -241,7 +260,26 @@ module.exports = {
             })
     },
 
-    addcountry1:(req,res,next)=>{
+    addcitywithcountryid:(req,res)=>{
+        const {ID_PAIS,NOMBRE_CIUDAD}=req.body;
+                DB.query("INSERT INTO CIUDADES (ID_PAIS,NOMBRE_CIUDAD) VALUES("+ID_PAIS+",'"+NOMBRE_CIUDAD+"')",{
+                    type:DB.QueryTypes.INSERT
+                }).then((resultado) => {
+                    res.json("Ciudad agregada");
+                })
+    },
+
+    addcountrywithregion:(req,res,next)=>{
+        const {ID_REGION,NOMBRE_PAIS}=req.body;
+                DB.query("INSERT INTO PAISES (ID_REGION,NOMBRE_PAIS) VALUES("+ID_REGION+",'"+NOMBRE_PAIS+"')",{
+                    type:DB.QueryTypes.INSERT
+                }).then((resultado) => {
+                    res.json("País agregado");
+                    next();
+                    })
+    },
+
+    addcountry:(req,res,next)=>{
         const {ID_PAIS,NOMBRE_PAIS}=req.body;
         DB.query("SELECT ID_REGION FROM PAISES WHERE ID="+ID_PAIS ,{
             type:DB.QueryTypes.SELECT
@@ -255,7 +293,7 @@ module.exports = {
                     })
             })
     },
-    addcountry2:(req,res)=>{
+    /* addcountry2:(req,res)=>{
         const {ID_PAIS,NOMBRE_PAIS}=req.body;
         DB.query("SELECT * FROM PAISES WHERE NOMBRE_PAIS='"+NOMBRE_PAIS+"'",{
             type:DB.QueryTypes.SELECT
@@ -267,7 +305,7 @@ module.exports = {
                 res.json("Ciudad dummy agregada");
             })
         })
-    },
+    }, */
 
     addregion:(req,res,next)=>{
         const {ID_REGION,NOMBRE_REGION}=req.body;
@@ -275,25 +313,6 @@ module.exports = {
                     type:DB.QueryTypes.INSERT
                 }).then((resultado) => {
                     res.json("Region agregada");
-                    DB.query("SELECT * FROM REGIONES WHERE NOMBRE_REGION='"+NOMBRE_REGION+"'",{
-                        type:DB.QueryTypes.SELECT
-                    }).then((resultado) => {
-                        const idp=resultado[0].ID;
-                        DB.query("INSERT INTO PAISES (ID_REGION,NOMBRE_PAIS) VALUES("+idp+",'PPP"+idp+"')",{
-                            type:DB.QueryTypes.INSERT
-                        }).then((resultado) => {
-                            DB.query("SELECT P.ID  FROM PAISES AS P INNER JOIN REGIONES AS R ON P.ID_REGION=R.ID  WHERE NOMBRE_REGION='"+NOMBRE_REGION+"'",{
-                                type:DB.QueryTypes.SELECT
-                            }).then((resultado) => {
-                                const idpp=resultado[0].ID;
-                                DB.query("INSERT INTO CIUDADES (ID_PAIS,NOMBRE_CIUDAD) VALUES("+idpp+",'CCC"+idpp+"')",{
-                                    type:DB.QueryTypes.INSERT
-                                }).then((resultado) => {
-                                    res.json("Región agregada");
-                                })
-                            })
-                        })
-                    })
                 })
             },    
 

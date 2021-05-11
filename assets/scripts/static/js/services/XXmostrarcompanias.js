@@ -18,7 +18,6 @@ function borrarcomp(event){
             if (response.status === 200) {
                 alert("Compañía borrada");
                 document.getElementsByClassName("modaleliminar4")[0].style.display="none";
-                document.getElementsByClassName("modalcompania2")[0].style.display="none";
                 buscarcompanias();
             } else {
                 console.log('error.');
@@ -28,16 +27,6 @@ function borrarcomp(event){
 
 function borrarcompania(event){
     var id = event.target.id;
-    document.getElementsByClassName("modaleliminar4")[0].style.display="block";
-
-    const botonaborrarcontacto= `
-        <button id="eliminar4" name=${id} onclick="borrarcomp(event)">Eliminar</button>`;
-    document.querySelector('.eliminar4').innerHTML=botonaborrarcontacto;
-
-};
-
-function borrarcompania2(event){
-    var id=event.target.getAttribute('name');
     document.getElementsByClassName("modaleliminar4")[0].style.display="block";
 
     const botonaborrarcontacto= `
@@ -56,79 +45,100 @@ function cerrarnuevacompania(){
     document.getElementById("newcompany").reset();
 };
 
-function guardarcomp(){
-        
-        const data = { 
-        NOMBRE:document.getElementById("namecompany").value,
-        DIRECCION:document.getElementById("addresscompany").value,
-        EMAIL:document.getElementById("mailcompany").value,
-        TELEFONO:document.getElementById("telcompany").value,
-        CIUDAD:document.getElementById("ciudad3").value,
-    };
-    
-        fetch('http://localhost:5500/add/company', {
-        method: 'PUT',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-        })
-        .then((response) =>{
-            if (response.status === 200) {
-                console.log('Compañia creada con éxito');
-                cerrarnuevacompania();
-                buscarcompanias();
-            } else {
-                alert('Error, compañía no creado, valide los datos.');
-            }
-        })
-};
-
 function crearnuevacompania(){
     document.getElementsByClassName("modalcompania")[0].style.display="block";
     document.getElementById("guardarcompany").style.marginLeft="400px";
-};
 
-function guardcomp2(event){
-    var id=event.target.getAttribute('name');
+    const botonaborrarcontacto= `
+        <button id="eliminar4" name=${id} onclick="borrarcomp(event)">Eliminar</button>`;
+    document.querySelector('.eliminar4').innerHTML=botonaborrarcontacto;
 
-        const data = { 
-            NOMBRE:document.getElementById("namecompany2").value,
-            DIRECCION:document.getElementById("addresscompany2").value,
-            EMAIL:document.getElementById("mailcompany2").value,
-            TELEFONO:document.getElementById("telcompany2").value,
-            CIUDAD:document.getElementById("citycompany2").value,
-    };
-    
-        fetch('http://localhost:5500/update/company?id='+ id, {
-        method: 'PUT',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-        })
-        .then((response) =>{
-            if (response.status === 200) {
-                console.log('Compañía actualizada con éxito');
-                cerrarnuevacompania2()
-                buscarcompanias();
-            } else {
-                console.log('error.');
-            }
+
+    document.getElementById("guardarcompany").addEventListener("click",function(){
+        
+                const data = { 
+                NOMBRE:document.getElementById("namecompany").value,
+                DIRECCION:document.getElementById("addresscompany").value,
+                EMAIL:document.getElementById("mailcompany").value,
+                TELEFONO:document.getElementById("telcompany").value,
+                CIUDAD:document.getElementById("ciudad3").value,
+            };
+            
+                fetch('http://localhost:5500/add/company', {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+                })
+                .then((response) =>{
+                    if (response.status === 200) {
+                        console.log('Compañia creada con éxito');
+                        cerrarnuevacompania();
+                        buscarcompanias();
+                    } else {
+                        alert('Error, compañía no creado, valide los datos.');
+                    }
+                })
         })
 };
 
 function editarcompania(event){
     document.getElementsByClassName("modalcompania2")[0].style.display="block";
+    document.getElementById("deletecompany2").style.display="block";
+    document.getElementById("guardarcompany2").style.marginLeft="400px";
+    document.getElementById("guardarcompany2").style.marginTop="0px";
 
     var id = event.target.id;
-
-    const botonaborrarcontacto= `
-        <button id="deletecompany2" name=${id} onclick="borrarcompania2(event)">Eliminar</button>
-        <button id="guardarcompany2" onclick="guardcomp2(event)" name=${id} >Guardar</button>
-    `;
-    document.querySelector('.deletecompany2').innerHTML=botonaborrarcontacto;
-
+  
+    document.getElementById("deletecompany2").addEventListener("click", function() {
+  
+      document.getElementsByClassName("modaleliminar4")[0].style.display="block";
+  
+      document.getElementById("eliminar4").addEventListener("click", function() {
+        fetch('http://localhost:5500/delete/company?id='+id, {
+            method: 'DELETE'})
+        .then((response) =>{
+            if (response.status === 200) {
+                alert("Compañía borrada");
+                document.getElementsByClassName("modaleliminar4")[0].style.display="none";
+                document.getElementsByClassName("modalcompania2")[0].style.display="none";
+                buscarcompanias();
+            } else {
+                console.log('error.');
+            }
+        })
+    })
+  });
+  
+    document.getElementById("guardarcompany2").addEventListener("click", function(){
+            const data = { 
+                NOMBRE:document.getElementById("namecompany2").value,
+                DIRECCION:document.getElementById("addresscompany2").value,
+                EMAIL:document.getElementById("mailcompany2").value,
+                TELEFONO:document.getElementById("telcompany2").value,
+                CIUDAD:document.getElementById("citycompany2").value,
+        };
+        
+            fetch('http://localhost:5500/update/company?id='+ id, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+            })
+            .then((response) =>{
+                if (response.status === 200) {
+                    console.log('Compañía actualizada con éxito');
+                    cerrarnuevacompania2()
+                    buscarcompanias();
+                } else {
+                    console.log('error.');
+                }
+            })
+      });
+  
+  
     fetch("http://localhost:5500/search/company?id="+ id)
       .then( tipoDeDato => tipoDeDato.json())
       .then(data => {

@@ -3,25 +3,13 @@ document.getElementById("mostrarcontactos").addEventListener("click", function (
     document.querySelectorAll('#usuarios, #companias, #regiones').forEach((el) =>{ el.style.display = " none";} );
 });
 
-const listacontactos=document.querySelector('.listadecontactos')
+const listacontactos=document.querySelector('.listadecontactos');
 cantidad=document.getElementById("filas").value;
 filaspag=document.getElementById("filasenpagina");
 filastot=document.getElementById("filastotales");
 var filtro='ID';
 window.onload = buscarcontactos(0,filtro);
 window.onload=localStorage.removeItem('erase');
-
-
-///DESHABILITAR LINK DE USUARIOS
-fetch("http://localhost:5500/useradmin")
-  .then((response) =>{
-    if (response.status === 403) {
-        document.getElementById("mostrarusuarios").style.visibility="hidden";
-    } else {
-        document.getElementById("mostrarusuarios").style.visibility="visible";
-    }
-});
-        
 
 ///BUSCADOR
 document.getElementById("lupa").addEventListener("click",function(){
@@ -41,15 +29,9 @@ document.getElementById("filas").addEventListener("change", function(){
 });
 
 ///BORRAR CONTACTO
-function borrarcontacto(event){
-    var id = event.target.id;
-    document.getElementsByClassName("modaleliminar")[0].style.display="block";
+function borrarc(event){
+    var id=event.target.getAttribute('name');
 
-    document.getElementById("cancel").addEventListener("click", function() {
-        document.getElementsByClassName("modaleliminar")[0].style.display="none";
-    })
-
-    document.getElementById("eliminar").addEventListener("click", function() {
         fetch('http://localhost:5500/delete/contact?id='+id, {
             method: 'DELETE'})
         .then((response) =>{
@@ -61,7 +43,13 @@ function borrarcontacto(event){
                 console.log('error.');
             }
         })
-    })
+};
+function borrarcontacto(event){
+    var id = event.target.id;
+    document.getElementsByClassName("modaleliminar")[0].style.display="block";
+
+    const bo= `<button id="eliminar" name=${id} onclick="borrarc(event)">Eliminar</button>`;
+    document.querySelector('.eliminar').innerHTML=bo;
 };
 
 
@@ -210,7 +198,7 @@ function buscarcontactos(x){
             });
         });
     }
-}
+};
     
 ///TOTAL DE FILAS EN BASE
 fetch("http://localhost:5500/view/totalrows")
@@ -283,14 +271,7 @@ function borrar(id) {
 
 
 //ELIMINAR CONTACTOS
-function borrarcontacto2(){
-    document.getElementsByClassName("modaleliminar2")[0].style.display="block";
-
-    document.getElementById("cancel2").addEventListener("click", function() {
-        document.getElementsByClassName("modaleliminar2")[0].style.display="none";
-    })
-
-    document.getElementById("eliminar2").addEventListener("click", function() {
+function borrarvarios(){
         var erasestring = "";
         if(erase.length == 0){
         }
@@ -303,7 +284,7 @@ function borrarcontacto2(){
                     erasestring+= id;
                 }
             })
-        };
+        }
         console.log(erasestring);
 
         fetch('http://localhost:5500/bulkdelete?id='+ erasestring, {method: 'DELETE'})
@@ -311,12 +292,19 @@ function borrarcontacto2(){
                 if (response.status === 200) {
                     localStorage.removeItem('erase');
                     console.log(response);
-                    alert("Contacto borado");
+                    alert("Contactos borrados");
+                    cerrarmodaleliminar2()
                     buscarcontactos(0);
                 } else {
                     console.log(response);
                 }
             })
-    })
 };
+function cerrarmodaleliminar2(){
+    document.getElementsByClassName("modaleliminar2")[0].style.display="none";
+};
+function borrarcontacto2(){
+    document.getElementsByClassName("modaleliminar2")[0].style.display="block";
+};
+    
 

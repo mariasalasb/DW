@@ -371,11 +371,12 @@ option:not(:first-of-type) {
 .grisado{
     background: rgba(0,0,0,0.10);
 }
-.botonescontacto, .botonescontacto2{
+.botonescontacto{
     margin: 10px 30px 30px 900px;
 }
-.nuevocontacto .botonescontacto2{
-    margin: 10px 30px 30px 600px;
+
+ .botonescontacto2{
+    margin: 0px 30px 30px 600px;
 }
 #guardar, #cancelar,#guardar2, #cancelar2, #guardarusuario,#guardarusuario2, #deleteuser, #deleteuser2, #guardarcompany,#guardarcompany2, #deletecompany, #deletecompany2{
     width: 173px;
@@ -389,8 +390,11 @@ option:not(:first-of-type) {
     outline: none;
     border: none;
 }
-#guardarusuario,#guardarusuario2, #guardarcompany,#guardarcompany2{
+#guardarusuario,#guardarusuario2, #guardarcompany{
     margin: 25px 0 0 0px;
+}
+#guardarcompany2, #guardarusuario2{
+    margin: 0px 0px 0px 400px;
 }
 
 #deleteuser,  #deleteuser2, #deletecompany, #deletecompany2{

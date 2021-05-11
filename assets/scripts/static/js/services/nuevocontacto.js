@@ -25,12 +25,15 @@ function cerrarnuevocontacto(){
   document.querySelectorAll('#preferencias, #preferencias2, #ciudad, #pais').forEach((el) =>{ el.style.background = " #E5E5E5"} );
   document.querySelectorAll('#preferencias, #preferencias2').forEach((el) =>{el.value=""; el.selectedIndex = "Sin Preferencias";} );
   document.querySelectorAll('#ciudad, #pais, #selector_porcentajes').forEach((el) =>{el.value=""; el.selectedIndex = 0;} )
+  document.getElementById("guardar").disabled=true;
+  document.getElementById("cancelar").disabled=true;
+
 };
 
 window.onload = botones();
 function botones()
 {
-    if(nombre.value.length<1 ||lastname.value.length<1 ||cargo.value.length<1||mail.value.length<1||company.value.length<1) {
+    if(nombre.value.length<1 ||lastname.value.length<1 ||cargo.value.length<1||mail.value.length<1||company.value==0) {
       document.getElementById("guardar").disabled=true;
       document.getElementById("cancelar").disabled=true;
     }
@@ -39,10 +42,6 @@ function botones()
       document.getElementById("cancelar").disabled=false;
     } 
 };
-
-document.getElementsByClassName("foto2")[0].addEventListener("click",file);
-document.getElementsByClassName("camara")[0].addEventListener("click",file);
-
 
 ///SUBIR Y MOSTRAR IMAGEN EN FORMULARIO
 function file(){
@@ -82,8 +81,8 @@ document.getElementById("selector_porcentajes2").onchange = function() {
 }
 
 ///AGREGAR NUEVO CONTACTO
-document.getElementById("guardar").addEventListener("click", 
-function(){
+function guardnuevocont(){
+
     const data = { 
     NOMBRE:document.getElementById("name").value,
     APELLIDO:document.getElementById("lastname").value,
@@ -117,7 +116,8 @@ function(){
             console.log('error.');
           }
     })
-})
+};
+
 
 ////EDITAR CONTACTO
 
@@ -138,20 +138,12 @@ function botones2()
     } 
 }; 
 
-function editarcontacto(event){
-  document.getElementsByClassName("modalcontacto2")[0].style.display="block";
+function cerrarmodaleliminar(){
+  document.getElementsByClassName("modaleliminar")[0].style.display="none";
+};
 
-  var id = event.target.id;
-
-  document.getElementById("cancelar2").addEventListener("click", function() {
-
-    document.getElementsByClassName("modaleliminar")[0].style.display="block";
-
-    document.getElementById("cancel").addEventListener("click", function() {
-        document.getElementsByClassName("modaleliminar")[0].style.display="none";
-    })
-
-    document.getElementById("eliminar").addEventListener("click", function() {
+function borrarcontacto3(event){
+  var id=event.target.getAttribute('name');
     fetch('http://localhost:5500/delete/contact?id='+id, {
         method: 'DELETE'})
     .then((response) =>{
@@ -164,47 +156,64 @@ function editarcontacto(event){
             console.log('error.');
         }
     })
-  })
-});
+};
 
-  document.getElementById("guardar2").addEventListener("click", function(){
- 
-      const data = { 
-      NOMBRE:document.getElementById("name2").value,
-      APELLIDO:document.getElementById("lastname2").value,
-      MAIL:document.getElementById("mail2").value,
-      PAIS:document.getElementById("pais2").value,
-      REGION:document.getElementById("region2").value,
-      COMPANIA:document.getElementById("company2").value,
-      CARGO:document.getElementById("cargo2").value,
-      INTERES:document.getElementById("selector_porcentajes2").value,
-      CIUDAD:document.getElementById("ciudad2").value,
-      DIRECCION:document.getElementById("direccion2").value,
-      TWITTER:document.getElementById("cuenta22").value,
-      PREFERENCIATW:document.getElementById("preferencias22").value,
-      FACEBOOK:document.getElementById("cuenta222").value,
-      PREFERENCIAFB:document.getElementById("preferencias222").value
-  };
-  
-      fetch('http://localhost:5500/update/contact?id='+ id, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-      })
-      .then((response) =>{
-          if (response.status === 200) {
-              console.log('Contacto actualizado con éxito');
-              cerrareditor()
-              buscarcontactos(0);
-              return response.json();
-            } else {
-              console.log('error.');
-            }
-      })
-    });
+function borrarcontacto2(event){
+    var id=event.target.getAttribute('name');
+    document.getElementsByClassName("modaleliminar")[0].style.display="block";
 
+    const boto= `<button id="eliminar" name=${id} onclick="borrarcontacto3(event)">Eliminar</button>`;
+    document.querySelector('.eliminar').innerHTML=boto;
+};
+
+function actcontacto(event){
+  var id=event.target.getAttribute('name');
+
+    const data = { 
+    NOMBRE:document.getElementById("name2").value,
+    APELLIDO:document.getElementById("lastname2").value,
+    MAIL:document.getElementById("mail2").value,
+    PAIS:document.getElementById("pais2").value,
+    REGION:document.getElementById("region2").value,
+    COMPANIA:document.getElementById("company2").value,
+    CARGO:document.getElementById("cargo2").value,
+    INTERES:document.getElementById("selector_porcentajes2").value,
+    CIUDAD:document.getElementById("ciudad2").value,
+    DIRECCION:document.getElementById("direccion2").value,
+    TWITTER:document.getElementById("cuenta22").value,
+    PREFERENCIATW:document.getElementById("preferencias22").value,
+    FACEBOOK:document.getElementById("cuenta222").value,
+    PREFERENCIAFB:document.getElementById("preferencias222").value
+};
+
+    fetch('http://localhost:5500/update/contact?id='+ id, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    })
+    .then((response) =>{
+        if (response.status === 200) {
+            console.log('Contacto actualizado con éxito');
+            cerrareditor()
+            buscarcontactos(0);
+            return response.json();
+          } else {
+            console.log('error.');
+          }
+    })
+};
+
+function editarcontacto(event){
+  document.getElementsByClassName("modalcontacto2")[0].style.display="block";
+
+  var id = event.target.id;
+
+  const bot= `
+    <button id="cancelar2" name=${id} onclick="borrarcontacto2(event)">Eliminar Contacto</button>
+    <button id="guardar2" name=${id} onclick="actcontacto(event)">Guardar contacto</button>`;
+  document.querySelector('.cancelar2').innerHTML=bot;
 
   fetch("http://localhost:5500/search/contact?id="+ id)
     .then( tipoDeDato => tipoDeDato.json())

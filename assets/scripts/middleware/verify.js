@@ -38,5 +38,5 @@ module.exports = {
                     console.log("El usuario no tiene permisos para realizar esta acción");
                 }
             });
-        },
+        }
     }

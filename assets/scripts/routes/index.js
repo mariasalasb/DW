@@ -9,7 +9,7 @@ router.use(cookieparser());
 const verify=require('../middleware/verify');
 //const devDto=require('../dto/dev');
 
-router.get('/useradmin',verify.useradmin);
+router.get('/admin',controlador.admin);
 
 router.get('/view/contact-list',controlador.contactlist);
 
@@ -47,7 +47,11 @@ router.put('/add/contact',verify.useradmin,controlador.addcontact);
 
 router.put('/add/city',verify.useradmin,controlador.addcity);
 
-router.put('/add/country',verify.useradmin,controlador.addcountry1,controlador.addcountry2);
+router.put('/add/citywithcountryid',verify.useradmin,controlador.addcitywithcountryid);
+
+router.put('/add/country',verify.useradmin,controlador.addcountry);
+
+router.put('/add/countrywithregion',verify.useradmin,controlador.addcountrywithregion);
 
 router.put('/add/region',verify.useradmin,controlador.addregion);
 
